@@ -5,10 +5,9 @@
    	header("Location: admin.php");
    	exit();
    }
-   
-   	if (isset($_GET['access'])) {
-   		$alert_user = true;
-   	}
+   if (isset($_GET['access'])) {
+      $alert_user = true;
+   }
    
    require 'includes/snippet.php';
    require 'includes/db-inc.php';
@@ -25,29 +24,22 @@
    	$sql_admin = "SELECT * from admin where username = '$username' and  password = '$password' ";
    	$query = mysqli_query($conn, $sql_admin);
    	// echo mysqli_error($conn);
-   	if(mysqli_num_rows($query) > 0)
-   	{
+   	if(mysqli_num_rows($query) > 0){
    			
-   				while($row = mysqli_fetch_assoc($query)){
-   					$_SESSION['auth'] = true;
-   					$_SESSION['admin'] = $row['username'];		
-   					}
-   					if ($_SESSION['auth'] === true) {
-   				header("Location: admin.php");
-   				exit();
-   					}
-   	}
-   		
-   			else {
-   						echo"<div class='alert alert-success alert-dismissable'>
-   						<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-   						<strong style='text-align: center'> Wrong Username and Password.</strong>  </div>";
-   					}		
-   					
-   						
-   
-   		
-   			}
+         while($row = mysqli_fetch_assoc($query)){
+            $_SESSION['auth'] = true;
+            $_SESSION['admin'] = $row['username'];		
+            }
+            if ($_SESSION['auth'] === true) {
+         header("Location: admin.php");
+         exit();
+            }
+   	} else {
+         echo"<div class='alert alert-success alert-dismissable'>
+         <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+         <strong style='text-align: center'> Wrong Username and Password.</strong>  </div>";
+   	}		
+   }
    					
    ?>
 <div class="container">
