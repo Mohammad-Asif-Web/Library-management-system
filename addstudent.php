@@ -1,31 +1,30 @@
 <?php 
-   require 'includes/snippet.php';
-   require 'includes/db-inc.php';
-   include "includes/header.php"; 
-   
-   if(isset($_POST['submit'])) {
-   
-       $studentId = trim($_POST['studentId']);
-       $email = trim($_POST['email']);
-       $dept = trim($_POST['dept']);
-       $phone = trim($_POST['phone']);
-       $name = trim($_POST['name']);
-   
-      $sql = "INSERT INTO students( id_no, email, dept, phoneNumber, name) VALUES ('$studentId',  '$email', '$dept','$phone', '$name' ) ";
-   
-      $query = mysqli_query($conn, $sql);
-      // $error = false;
-      if($query){
-      //  $error = true;
-      header("Location: viewstudents.php");
-      } else{
-         echo "<script> alert('Registration failed!! Try again.');</script>";
-      }
-        
-   
+require 'includes/snippet.php';
+require 'includes/db-inc.php';
+include "includes/header.php"; 
+
+if(isset($_POST['submit'])) {
+
+      $studentId = trim($_POST['studentId']);
+      $email = trim($_POST['email']);
+      $dept = trim($_POST['dept']);
+      $phone = trim($_POST['phone']);
+      $name = trim($_POST['name']);
+
+   $sql = "INSERT INTO students( id_no, email, dept, phoneNumber, name) VALUES ('$studentId',  '$email', '$dept','$phone', '$name' ) ";
+
+   $query = mysqli_query($conn, $sql);
+   // $error = false;
+   if($query){
+   //  $error = true;
+   header("Location: viewstudents.php");
+   } else{
+      echo "<script> alert('Registration failed!! Try again.');</script>";
    }
+}
    
-   ?>
+?>
+   
 <div class="container">
    <?php include "includes/nav.php"; ?>
    <div class="container  col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0  " style="margin-top: 20px">
