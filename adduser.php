@@ -26,7 +26,8 @@
    	$error = false;
    
    	if ($query) {
-   	$error = true;
+         $error = true;
+   	header("refresh:2; users.php");
    	}
    	else {
    	echo "<script>alert('Failed!');
