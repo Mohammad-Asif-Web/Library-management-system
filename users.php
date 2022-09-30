@@ -72,10 +72,5 @@
       </table>
    </div>
 </div>
-<script type="text/javascript">
-   function Delete() {
-               return confirm('Would you like to delete the User?');
-           }
-</script>
-</body>
-</html>
+
+<?php include 'includes/footer.php'; ?>
