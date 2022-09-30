@@ -1,3 +1,31 @@
+<?php
+
+$fileName = basename($_SERVER['PHP_SELF']);
+$pageTitle = '';
+
+switch($fileName){
+    case "admin.php":
+        $pageTitle = "Admin Dashboard";
+        break;
+    case "bookstable.php":
+        $pageTitle = "Books List";
+        break;
+    case "users.php":
+        $pageTitle = "Users List";
+        break;
+    case "viewstudents.php":
+        $pageTitle = "Students List";
+        break;
+    case "borrowedbooks.php":
+        $pageTitle = "Borrowed Books List";
+        break;
+    default:
+    $pageTitle = "Library Management system";
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +47,6 @@
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script> -->
 
 
-    <title>Library Management System</title>
+    <title><?php echo $pageTitle; ?></title>
 </head>
 <body>
