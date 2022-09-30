@@ -2,6 +2,7 @@
    require 'includes/snippet.php';
    require 'includes/db-inc.php';
    include "includes/header.php"; 
+   include "includes/nav.php";
    
    if(isset($_POST['del'])){
    
@@ -11,15 +12,13 @@
            $error = false;
    
    	$result = mysqli_query($conn,$sql_del);
-   			if ($result)
-   			{
-   		      $error = true;
-   			}		
-   
+         if ($result)
+         {
+            $error = true;
+         }		
     }
    ?>
 <div class="container">
-   <?php include "includes/nav.php"; ?>
    <!-- navbar ends -->
    <!-- info alert -->
    <div class="alert alert-warning col-lg-7 col-md-12 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-0 col-sm-offset-1 col-xs-offset-0" style="margin-top:70px">

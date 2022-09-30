@@ -1,25 +1,26 @@
 <?php 
-   require 'includes/snippet.php';
-   require 'includes/db-inc.php';
-   include "includes/header.php";    
-   
-   if(isset($_POST['del'])){
-   
-   	$id = sanitize(trim($_POST['id']));
-   
-   	$sql_del = "DELETE from books where BookId = $id"; 
-   	$error = false;
-   	$result = mysqli_query($conn,$sql_del);
-   			if ($result)
-   			{
-   			$error = true; //delete successful
-   			}			
-   
-    }
-   ?>
+require 'includes/snippet.php';
+require 'includes/db-inc.php';
+include "includes/header.php";   
+include "includes/nav.php"; 
+
+if(isset($_POST['del'])){
+
+   $id = sanitize(trim($_POST['id']));
+
+   $sql_del = "DELETE from books where BookId = $id"; 
+   $error = false;
+   $result = mysqli_query($conn,$sql_del);
+      if ($result)
+      {
+      $error = true; //delete successful
+      }			
+
+   }
+?>
    
 <div class="container">
-   <?php include "includes/nav.php"; ?>
+   
    <!-- navbar ends -->
    <!-- info alert -->
    <div class="alert alert-warning col-lg-7 col-md-12 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-0 col-sm-offset-1 col-xs-offset-0" style="margin-top:70px">
@@ -78,7 +79,5 @@
       </table>
    </div>
 </div>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>	
-</body>
-</html>
+
+<?php include 'includes/footer.php'; ?>

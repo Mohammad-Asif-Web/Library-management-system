@@ -2,17 +2,12 @@
    require 'includes/snippet.php';
    require 'includes/db-inc.php';
    include "includes/header.php"; 
-   
-   
-   
    	
    if(isset($_POST['submit'])){
    	$studentId = trim($_POST['studentID']);
    	$bdate = trim($_POST['borrowDate']);
    	$due = trim($_POST['dueDate']);
    	$bookId = trim($_POST['bookId']);
-   
-   	
    
    	$sql = "INSERT INTO borrow (studentId, bookId, borrowDate, returnDate) values('$studentId','$bookId', '$bdate', '$due')";
    	$query = mysqli_query($conn, $sql);
@@ -27,7 +22,6 @@
              
          </script>    ";
    			header("Location: borrowedbooks.php");
-   
    
    	}
    	else {

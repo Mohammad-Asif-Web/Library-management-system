@@ -2,10 +2,10 @@
    require 'includes/snippet.php';
    require 'includes/db-inc.php';
    include "includes/header.php";
-   
-   ?>
+   include "includes/nav.php";
+?>
+
 <div class="container">
-   <?php include "includes/nav.php"; ?>
    <!-- navbar ends -->
    <!-- info alert -->
    <div class="alert alert-warning col-lg-7 col-md-12 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-0 col-sm-offset-1 col-xs-offset-0" style="margin-top:70px">
@@ -26,7 +26,7 @@
             <tr>
                <th>S.No</th>
                <th>Book Id</th>
-               <th>Book Name</th>
+               <th>Book Title</th>
                <th>Issue Date</th>
                <th>Student ID</th>
                <th>Actions</th>
@@ -35,13 +35,15 @@
          </thead>
          <?php
             // $sql = "SELECT * FROM borrow"; 	
-            $sql = "SELECT * FROM books NATURAL JOIN borrow;"; 	
+            $sql = "SELECT borrow.borrowDate, borrow.studentId,
+            books.bookId ,books.bookTitle FROM borrow 
+            LEFT JOIN books ON borrow.bookId = books.bookId"; 	
             
             $query = mysqli_query($conn, $sql);
             $counter =1;
             	while($row = mysqli_fetch_array($query)){
             		
-            		?>
+         ?>
          <tbody>
             <tr>
                <td><?php echo $counter++; ?></td>
@@ -61,7 +63,5 @@
       <br>	         
    </div>
 </div>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>	
-</body>
-</html>
+
+<?php include 'includes/footer.php'; ?>
