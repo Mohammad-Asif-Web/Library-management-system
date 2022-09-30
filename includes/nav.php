@@ -9,9 +9,18 @@ if (isset($_SESSION['admin'])) {
      $admin = $_SESSION['admin'];
 }
 
+// dynamic menu without SQL
+$menu = array(
+    'admin.php' => 'Home',
+    'bookstable.php' => 'Books',
+    'users.php' => 'Admins',
+    'viewstudents.php' => 'Students',
+    'borrowedbooks.php' => 'Issued books',
+) ;
+
+$currentPage = basename($_SERVER['REQUEST_URI']) ;
+
 ?>
-
-
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -27,13 +36,20 @@ if (isset($_SESSION['admin'])) {
 
         <div class="collapse navbar-collapse" id="bs-example">
             <ul class="nav navbar-nav">
-                <?php if(isset($admin)) { ?>  
-                <li class="active"><a href="admin.php">Home</a></li>
-                <li><a href="bookstable.php">Books</a></li>
-                <li><a href="users.php">Admins</a></li>
-                <li><a href="viewstudents.php">Students</a></li>
-                <li><a href="borrowedbooks.php">Issued books</a></li>
-                <?php } ?>
+                <!-- dynamic menu without sql -->
+                <?php 
+                if(isset($admin)) { 
+                    foreach($menu as $url => $pageText){
+                        if($currentPage == $url){
+                            $active = "active";
+                            echo '<li class='.$active.'><a href='.$url.'>'.$pageText.'</a></li>';
+                        } else {
+                            $active = "";
+                            echo '<li class='.$active.'><a href='.$url.'>'.$pageText.'</a></li>';
+                        }
+                    }
+        
+                } ?>
                
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="logout.php">Logout</a></li>
@@ -41,3 +57,9 @@ if (isset($_SESSION['admin'])) {
         </div>
     </div>
 </nav>
+
+<!-- <li class="active"><a href="admin.php">Home</a></li>
+<li class="active"><a href="bookstable.php">Books</a></li>
+<li><a href="users.php">Admins</a></li>
+<li><a href="viewstudents.php">Students</a></li>
+<li><a href="borrowedbooks.php">Issued books</a></li> -->
