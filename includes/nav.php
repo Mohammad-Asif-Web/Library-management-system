@@ -22,8 +22,8 @@ $currentPage = basename($_SERVER['REQUEST_URI']) ;
 
 ?>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example">
                 <span class="sr-only">:</span>
@@ -35,7 +35,7 @@ $currentPage = basename($_SERVER['REQUEST_URI']) ;
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
                 <!-- dynamic menu without sql -->
                 <?php 
                 if(isset($admin)) { 
