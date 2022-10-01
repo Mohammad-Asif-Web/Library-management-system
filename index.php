@@ -1,49 +1,47 @@
 <?php
-   session_start(); 
-   
-   if ((isset($_SESSION['auth']) && $_SESSION['auth'] === true)) {
-   	header("Location: admin.php");
-   	exit();
-   }
-   if (isset($_GET['access'])) {
-      $alert_user = true;
-   }
-   
-   require 'includes/snippet.php';
-   require 'includes/db-inc.php';
-   include "includes/header.php";
-   
-   
-   
-   echo"<br>";
-   
-   if(isset($_POST['submit'])){
-   	$username = sanitize(trim($_POST['username']));
-   	$password = sanitize(trim($_POST['password']));
-   
-   	$sql_admin = "SELECT * from admin where username = '$username' and  password = '$password' ";
-   	$query = mysqli_query($conn, $sql_admin);
-   	// echo mysqli_error($conn);
-   	if(mysqli_num_rows($query) > 0){
-   			
-         while($row = mysqli_fetch_assoc($query)){
-            $_SESSION['auth'] = true;
-            $_SESSION['admin'] = $row['username'];		
-            }
-            if ($_SESSION['auth'] === true) {
-         header("Location: admin.php");
-         exit();
-            }
-   	} else {
-         echo"<div class='alert alert-success alert-dismissable'>
-         <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-         <strong style='text-align: center'> Wrong Username and Password.</strong>  </div>";
-   	}		
-   }
-   					
-   ?>
+session_start(); 
+
+if ((isset($_SESSION['auth']) && $_SESSION['auth'] === true)) {
+   header("Location: admin.php");
+   exit();
+}
+if (isset($_GET['access'])) {
+   $alert_user = true;
+}
+
+require 'includes/snippet.php';
+require 'includes/db-inc.php';
+include "includes/header.php";
+
+echo"<br>";
+
+if(isset($_POST['submit'])){
+   $username = sanitize(trim($_POST['username']));
+   $password = sanitize(trim($_POST['password']));
+
+   $sql_admin = "SELECT * from admin where username = '$username' and  password = '$password' ";
+   $query = mysqli_query($conn, $sql_admin);
+   // echo mysqli_error($conn);
+   if(mysqli_num_rows($query) > 0){
+         
+      while($row = mysqli_fetch_assoc($query)){
+         $_SESSION['auth'] = true;
+         $_SESSION['admin'] = $row['username'];		
+         }
+         if ($_SESSION['auth'] === true) {
+      header("Location: admin.php");
+      exit();
+         }
+   } else {
+      echo"<div class='alert alert-success alert-dismissable'>
+      <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+      <strong style='text-align: center'> Wrong Username and Password.</strong>  </div>";
+   }		
+}
+               
+?>
 <div class="container">
-   <div class="container  col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0  ">
+   <div class="col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0">
       <div class="jumbotron login col-lg-10 col-md-11 col-sm-12 col-xs-12">
          <p class="page-header" style="text-align: center">ADMIN LOGIN</p>
          <div class="container">
@@ -65,14 +63,14 @@
                      <input type="submit" class="btn btn-info col-lg-4" name="submit" value="Sign In">
                   </div>
                </div>
+            </form>
          </div>
-         </form>
       </div>
    </div>
 </div>
-</div>
+
 <div class="container">
-   <div class="row row-sm-10" style="align-content: center;">
+   <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0">
          <a href="bookslist.php"><button class="btn btn-success col-lg-3 col-md-4 col-sm-11 col-xs-11 button" style="margin-left: 15px;margin-bottom: 5px"><span class="glyphicon glyphicon-home"></span>&nbsp&nbspVIEW BOOKS</button></a>
    </div>
 </div>
